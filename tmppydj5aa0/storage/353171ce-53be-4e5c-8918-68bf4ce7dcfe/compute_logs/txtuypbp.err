@@ -1,0 +1,35 @@
+[32m2023-08-23 00:08:14 +0545[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 353171ce-53be-4e5c-8918-68bf4ce7dcfe - 26859 - LOGS_CAPTURED - Started capturing logs in process (pid: 26859).
+[32m2023-08-23 00:08:14 +0545[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 353171ce-53be-4e5c-8918-68bf4ce7dcfe - 26859 - api__github_commits - STEP_START - Started execution of step "api__github_commits".
+[32m2023-08-23 00:08:23 +0545[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 353171ce-53be-4e5c-8918-68bf4ce7dcfe - 26859 - api__github_commits - STEP_FAILURE - Execution of step "api__github_commits" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "api__github_commits"::
+
+pandas.errors.EmptyDataError: No columns to parse from file
+
+Stack Trace:
+  File "/home/kushal/PROJECTS/dagster_github_metrics/dagster-dbt-test-env/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 54, in op_execution_error_boundary
+    yield
+  File "/home/kushal/PROJECTS/dagster_github_metrics/dagster-dbt-test-env/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 445, in iterate_with_context
+    next_output = next(iterator)
+  File "/home/kushal/PROJECTS/dagster_github_metrics/dagster-dbt-test-env/lib/python3.10/site-packages/dagster/_core/execution/plan/compute.py", line 125, in gen_from_async_gen
+    yield loop.run_until_complete(async_gen.__anext__())
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "/home/kushal/PROJECTS/dagster_github_metrics/dagster-dbt-test-env/lib/python3.10/site-packages/dagster/_core/execution/plan/compute_generator.py", line 92, in _coerce_async_op_to_async_gen
+    result = await awaitable
+  File "/home/kushal/PROJECTS/dagster_github_metrics/dagster_github_metrics/assets/api/api_github_commits.py", line 12, in github_commits
+    await github_api.fetch_file_data(url=url,dirName=os.getcwd()+'/dagster_github_metrics/data/commits/',fileName='commits.tsv.xz')
+  File "/home/kushal/PROJECTS/dagster_github_metrics/dagster_github_metrics/resources/__init__.py", line 37, in fetch_file_data
+    csv_table=pd.read_table(tsv_file_name,low_memory=False)
+  File "/home/kushal/PROJECTS/dagster_github_metrics/dagster-dbt-test-env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1242, in read_table
+    return _read(filepath_or_buffer, kwds)
+  File "/home/kushal/PROJECTS/dagster_github_metrics/dagster-dbt-test-env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/kushal/PROJECTS/dagster_github_metrics/dagster-dbt-test-env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/kushal/PROJECTS/dagster_github_metrics/dagster-dbt-test-env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1679, in _make_engine
+    return mapping[engine](f, **self.options)
+  File "/home/kushal/PROJECTS/dagster_github_metrics/dagster-dbt-test-env/lib/python3.10/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 93, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 557, in pandas._libs.parsers.TextReader.__cinit__
+[0m

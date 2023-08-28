@@ -1,0 +1,23 @@
+version: 2
+
+sources:
+  - name: raw_data
+    description: "Click house database which acts as source."
+    database: raw_github_metrics
+    schema: raw_github_metrics
+    tables:
+      - name: commits
+        description: "Github commits."
+        meta:
+          dagster:
+            asset_key: ["data_loaded"]
+      - name: file_changes
+        description: "All the file changes data."
+        meta:
+          dagster:
+            asset_key: ["data_loaded"]
+      - name: line_changes
+        description: "All the line changes data."
+        meta:
+          dagster:
+            asset_key: ["data_loaded"]

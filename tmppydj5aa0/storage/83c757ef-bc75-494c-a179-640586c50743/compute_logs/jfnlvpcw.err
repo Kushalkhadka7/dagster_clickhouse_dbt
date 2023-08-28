@@ -1,0 +1,8 @@
+[32m2023-08-23 00:15:59 +0545[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 83c757ef-bc75-494c-a179-640586c50743 - 8918 - LOGS_CAPTURED - Started capturing logs in process (pid: 8918).
+[32m2023-08-23 00:15:59 +0545[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 83c757ef-bc75-494c-a179-640586c50743 - 8918 - api__github_commits - STEP_START - Started execution of step "api__github_commits".
+unxz: commits.tsv: File exists
+[32m2023-08-23 00:16:02 +0545[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 83c757ef-bc75-494c-a179-640586c50743 - 8918 - api__github_commits - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2023-08-23 00:16:02 +0545[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 83c757ef-bc75-494c-a179-640586c50743 - api__github_commits - Writing file at: /home/kushal/PROJECTS/dagster_github_metrics/tmppydj5aa0/storage/api/github_commits using PickledObjectFilesystemIOManager...
+[32m2023-08-23 00:16:02 +0545[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 83c757ef-bc75-494c-a179-640586c50743 - 8918 - api__github_commits - ASSET_MATERIALIZATION - Materialized value api github_commits.
+[32m2023-08-23 00:16:02 +0545[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 83c757ef-bc75-494c-a179-640586c50743 - 8918 - api__github_commits - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2023-08-23 00:16:02 +0545[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 83c757ef-bc75-494c-a179-640586c50743 - 8918 - api__github_commits - STEP_SUCCESS - Finished execution of step "api__github_commits" in 2.4s.

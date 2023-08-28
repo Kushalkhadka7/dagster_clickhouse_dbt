@@ -1,0 +1,11 @@
+github_metrics:
+  target: dev
+  outputs:
+    dev:
+      type: clickhouse
+      schema: sz_github_metrics
+      host: localhost
+      port: 8123
+      user: default
+      secure: False
+      verify: False
