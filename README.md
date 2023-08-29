@@ -56,3 +56,8 @@ Navigate to assets and materialize the assets.
 The easiest way to deploy your Dagster project is to use Dagster Cloud.
 
 Check out the [Dagster Cloud Documentation](https://docs.dagster.cloud) to learn more.
+
+## Additional Pipeline diagram
+
+![Architecture Diagram](assets/asset3.png)
+![Architecture Diagram](assets/asset4.png)
