@@ -13,12 +13,12 @@ WITH current_files AS
             SELECT
                 path,
                 max(time) AS last_time,
-                argMax(change_type, time) AS change_type
+                argMax(cast(change_type as UInt32), time) AS change_type
             FROM {{ source('raw_data', 'file_changes')}}
             GROUP BY path
         )
         GROUP BY path
-        HAVING (argMax(change_type, last_time) != 2) AND (NOT match(path, '(^dbms/)|(^libs/)|(^tests/testflows/)|(^programs/server/store/)'))
+        HAVING (argMax(cast(change_type as UInt32), last_time) != 2) AND (NOT match(path, '(^dbms/)|(^libs/)|(^tests/testflows/)|(^programs/server/store/)'))
         ORDER BY path ASC
     )
 SELECT

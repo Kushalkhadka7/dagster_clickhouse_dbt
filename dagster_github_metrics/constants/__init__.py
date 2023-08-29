@@ -108,3 +108,6 @@ CLICK_HOUSE_CONFIG = {
     "username": "default",
     "password": "default",
 }
+
+DBT_PROJECT_PATH = "../../dbt_github_metrics"
+DBT_PROJECT_CONFIG_PATH = "../../dbt_github_metrics/config"

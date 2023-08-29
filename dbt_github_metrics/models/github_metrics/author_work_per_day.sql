@@ -1,5 +1,5 @@
 WITH author_work AS (
-     SELECT
+    SELECT
         day_of_week,
         author,
         sum(lines_added) + sum(lines_deleted) AS author_work
@@ -13,4 +13,5 @@ WITH author_work AS (
         author_work DESC
     LIMIT 1 BY day_of_week
 )
+
 SELECT * FROM author_work

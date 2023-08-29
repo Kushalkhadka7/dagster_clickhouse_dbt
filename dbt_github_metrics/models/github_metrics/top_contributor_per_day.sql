@@ -17,4 +17,5 @@ WITH top_contributor AS (
         GROUP BY dayOfWeek(time) AS day_of_week
     ) AS all_work USING (day_of_week)
 )
+
 SELECT * FROM top_contributor

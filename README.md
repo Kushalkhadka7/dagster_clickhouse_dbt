@@ -1,44 +1,55 @@
 # dagster_github_metrics
 
-This is a [Dagster](https://dagster.io/) project scaffolded with [`dagster project scaffold`](https://docs.dagster.io/getting-started/create-new-project).
+Integrate dbt and clickhouse with `dagster`.It a continue of the previous project ["clickhouse-dbt"](https://github.com/Kushalkhadka7/clickhouse-dbt). In this project `dagster` is used to orchestrate the data pipeline.
+
+The pipeline fetches csv data files from s3 buckets and stores those files in local filesystem. Once the files are downloaded we extract the data from csv files and load them to `clickhouse-server` raw database `(rz_github_metrics)`.
+
+After the data is loaded to raw zone, transformation pipeline executes `dbt_project` and transforms the data and load the transformed data into standard
+transformed zone `(sz_github_metrics)`.
+
+## Workflow diagram
+
+![Architecture Diagram](assets/assets.svg)
+
+## Pipeline diagram
+
+![Architecture Diagram](assets/assset2.png)
+
+## Requirements
+
+| Name           | Version |
+| -------------- | ------- |
+| docker         | >= 20   |
+| docker-compose | >= 2    |
+| virtualenv     | >= 20   |
+
+> **_NOTE :_** Before running this project. The clickhouse-server should be up and running from this project ["clickhouse-dbt"](https://github.com/Kushalkhadka7/clickhouse-dbt). Also, all of the migrations should be executed, but the data loading part is skipped since the loading and transformation of the data will be orchestrated by dagster.
 
 ## Getting started
 
 First, install your Dagster code location as a Python package. By using the --editable flag, pip will install your Python package in ["editable mode"](https://pip.pypa.io/en/latest/topics/local-project-installs/#editable-installs) so that as you develop, local code changes will automatically apply.
 
 ```bash
-pip install -e ".[dev]"
+make dagster-env
+
+# Make local env ready to run dagster project.
 ```
 
-Then, start the Dagster UI web server:
+This will create a virtualenv with all of the required dependencies installed and ready to run dagster locally.
+
+Then make a copy of `.env.example` file to `.env` and update the credentials accordingly.
+
+After that, start the Dagster UI web server:
 
 ```bash
-dagster dev
+make dagster-dev
+
+# Run dagster server.
 ```
 
 Open http://localhost:3000 with your browser to see the project.
 
-You can start writing assets in `dagster_github_metrics/assets.py`. The assets are automatically loaded into the Dagster code location as you define them.
-
-## Development
-
-### Adding new Python dependencies
-
-You can specify new Python dependencies in `setup.py`.
-
-### Unit testing
-
-Tests are in the `dagster_github_metrics_tests` directory and you can run tests using `pytest`:
-
-```bash
-pytest dagster_github_metrics_tests
-```
-
-### Schedules and sensors
-
-If you want to enable Dagster [Schedules](https://docs.dagster.io/concepts/partitions-schedules-sensors/schedules) or [Sensors](https://docs.dagster.io/concepts/partitions-schedules-sensors/sensors) for your jobs, the [Dagster Daemon](https://docs.dagster.io/deployment/dagster-daemon) process must be running. This is done automatically when you run `dagster dev`.
-
-Once your Dagster Daemon is running, you can start turning on schedules and sensors for your jobs.
+Navigate to assets and materialize the assets.
 
 ## Deploy on Dagster Cloud
 

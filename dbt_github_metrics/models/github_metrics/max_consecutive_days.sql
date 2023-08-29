@@ -1,4 +1,3 @@
-
 WITH commit_days AS
 (
     SELECT

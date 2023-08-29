@@ -1,5 +1,3 @@
-{{ config(materialized='table') }}
-
 WITH history_of_activities AS (
     SELECT
         week,

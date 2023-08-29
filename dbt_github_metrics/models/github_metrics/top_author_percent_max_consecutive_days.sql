@@ -7,4 +7,5 @@ WITH top_author_percent_max_consecutive_days AS (
     FROM {{ ref('max_consecutive_days') }}
     INNER JOIN {{ ref('top_contributor_per_day') }} using (author)
 )
+
 SELECT * FROM top_author_percent_max_consecutive_days

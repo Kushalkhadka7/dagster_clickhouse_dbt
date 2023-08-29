@@ -1,12 +1,12 @@
+import os
+
 from dagster import (
     sensor,
     define_asset_job,
     RunRequest,
     RunConfig,
     Config,
-    DagsterEvent,
 )
-import os
 
 MY_DIRECTORY = "./"
 

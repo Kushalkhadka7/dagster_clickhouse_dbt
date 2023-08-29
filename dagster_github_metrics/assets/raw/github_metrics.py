@@ -1,15 +1,7 @@
 import os
 import pandas as pd
 
-from dagster import (
-    asset,
-    AssetIn,
-    OutputContext,
-    SkipReason,
-    Output,
-    multi_asset,
-    AssetOut,
-)
+from dagster import asset, AssetIn, OutputContext, SkipReason, Output
 
 from ...constants import (
     COMMITS_DIR_PATH,
@@ -25,9 +17,9 @@ from ...constants import (
 
 
 @asset(
-    ins={"commits": AssetIn(key_prefix=["api"])},
     key_prefix=["raw"],
     io_manager_key="clickhouse_io_manager",
+    ins={"commits": AssetIn(key_prefix=["api"])},
 )
 def commits(context: OutputContext, commits):
     if commits != "SUCCESS":
@@ -52,9 +44,9 @@ def commits(context: OutputContext, commits):
 
 
 @asset(
-    ins={"file_changes": AssetIn(key_prefix=["api"])},
     key_prefix=["raw"],
     io_manager_key="clickhouse_io_manager",
+    ins={"file_changes": AssetIn(key_prefix=["api"])},
 )
 def file_changes(file_changes):
     if file_changes != "SUCCESS":
@@ -79,9 +71,9 @@ def file_changes(file_changes):
 
 
 @asset(
-    ins={"line_changes": AssetIn(key_prefix=["api"])},
     key_prefix=["raw"],
     io_manager_key="clickhouse_io_manager",
+    ins={"line_changes": AssetIn(key_prefix=["api"])},
 )
 def line_changes(line_changes):
     if line_changes != "SUCCESS":
@@ -105,12 +97,12 @@ def line_changes(line_changes):
 
 
 @asset(
+    key_prefix=["raw_data"],
     ins={
+        "commits": AssetIn(key_prefix=["raw"]),
         "line_changes": AssetIn(key_prefix=["raw"]),
         "file_changes": AssetIn(key_prefix=["raw"]),
-        "commits": AssetIn(key_prefix=["raw"]),
     },
-    key_prefix=["raw_data"],
 )
 def data_loaded(commits, file_changes, line_changes):
     return commits, file_changes, line_changes
